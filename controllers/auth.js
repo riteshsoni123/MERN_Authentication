@@ -133,7 +133,7 @@ exports.resetpassword = async (req, res, next) => {
   }
 };
 
-const sendToken = (user, statusCode, res) => {
-  const token = user.getSignedToken();
+const sendToken = async (user, statusCode, res) => {
+  const token = await user.getSignedToken();
   res.status(statusCode).json({ success: true, token });
 };

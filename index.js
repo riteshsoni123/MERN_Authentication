@@ -3,12 +3,14 @@ const express = require("express");
 const connectDB = require("./config/db");
 const { $where } = require("./models/User");
 const errorHandler = require("./middleware/error");
+const Cors = require("cors");
 
 connectDB();
 
 const app = express();
 
 app.use(express.json());
+app.use(Cors());
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
