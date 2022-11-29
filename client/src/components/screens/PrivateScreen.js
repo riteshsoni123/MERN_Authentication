@@ -9,7 +9,7 @@ const PrivateScreen = () => {
 
   useEffect(() => {
     if (!localStorage.getItem("authToken")) {
-      navigate("./login");
+      navigate("/login");
     }
 
     const fetchPrivateData = async () => {
@@ -22,7 +22,7 @@ const PrivateScreen = () => {
 
       try {
         const { data } = await axios.get("/api/private", config);
-        setPrivateData(data.data);
+        setPrivateData(data);
       } catch (error) {
         localStorage.removeItem("authToken");
         setError("You are not authorized please login");
@@ -37,10 +37,14 @@ const PrivateScreen = () => {
   };
 
   return error ? (
-    <span>{error}</span>
+    <>
+      {console.log(error)}
+      <span>{error}</span>
+    </>
   ) : (
     <>
-      <div style={{ background: "green", color: "white" }}>{privateData}</div>
+      <div>{privateData.email}</div>
+      <div>{privateData.username}</div>
       <button onClick={logoutHandler}>Logout</button>
     </>
   );

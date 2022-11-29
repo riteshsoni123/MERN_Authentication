@@ -2,7 +2,7 @@ import { useState, React, useEffect } from "react";
 import axios from "../../axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +34,7 @@ const LoginScreen = ({ history }) => {
 
       navigate("/");
     } catch (error) {
+      console.log(error);
       setError(error.response.data.error);
       setTimeout(() => {
         setError("");
@@ -82,7 +83,7 @@ const LoginScreen = ({ history }) => {
           Login
         </button>
         <span>
-          Don't have an account?<Link to="./regiser">Register</Link>
+          Don't have an account?<Link to="/register">Register</Link>
         </span>
       </form>
     </div>
